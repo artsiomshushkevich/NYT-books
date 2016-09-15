@@ -1,0 +1,34 @@
+{
+  "name": "nyt-books",
+  "version": "1.0.0",
+  "description": "apllication wich uses angular\u001bangularjs applcation wich uses New York Times API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artsiomshushkevich/NYT-books.git"
+  },
+  "keywords": [
+    "api",
+    "angularjs"
+  ],
+  "author": "Artsiom Shushkevich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artsiomshushkevich/NYT-books/issues"
+  },
+  "homepage": "https://github.com/artsiomshushkevich/NYT-books#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-webserver": "^0.9.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

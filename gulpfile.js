@@ -4,9 +4,22 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var webserver = require('gulp-webserver');
+var plumber = require('gulp-plumber');
+
+var plumberConfig = {
+  handleError: function (err) {
+    console.log(err);
+    this.emit('end');
+  }
+};
 
 gulp.task('scripts', function() {
-  return gulp.src(['./src/**/app.js', './src/**/*.js']) 
+  return gulp.src(['./node_modules/**/angular.min.js',
+                   './node_modules/**/angular-resource.min.js', 
+                   './src/**/app.js', 
+                   './src/**/*.js'
+    ])
+    .pipe(plumber(plumberConfig))
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(uglify())

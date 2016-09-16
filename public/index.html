@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="nytBooks">
 <head>
   <meta charset="UTF-8">
   <title>NYT books</title>
   <link rel="stylesheet" href="./css/app.css">
 </head>
-<body>
-  <h1>HELLO!</h1>
-  <script src="./js/app.js"></script>
+<body ng-controller="BooksListController">
+  <section class="books-container">
+   <div class="book" ng-repeat="book in books">
+     <p>{{book.book_details[0].title}}</p>
+     <p>{{book.book_details[0].contributor}} | {{book.book_details[0].publisher}}</p>
+     <p class="book-description">{{book.book_details[0].description}}</p>
+
+     <a href="{{book.amazon_product_url}}" class="buy-link">Amazon</a>
+   </div> 
+  </section>
 </body>
+<script src="./js/app.js"></script>
 </html>

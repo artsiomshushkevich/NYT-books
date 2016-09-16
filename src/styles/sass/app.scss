@@ -1,0 +1,66 @@
+
+$arial-font-stack: Arial, sans-serif;
+$flat-blue: #2980b9;
+$background-gray: #ecf0f1;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-gray;
+}
+
+.books-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $arial-font-stack;
+  justify-content: space-around;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.book {
+  background-color: white;
+  font-size: 14px;
+  height: 250px;
+  margin-bottom: 20px;
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  
+  p:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 5px;
+  }
+  
+  p:nth-child(2) {
+    font-size: 15px;
+    padding-bottom: 25px;
+  }
+}
+
+.book-description {
+  padding-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.buy-link {
+  border-radius: 3px;
+  background-color: $flat-blue;
+  bottom: 10px;
+  color: white;
+  display: inline-block;
+  font-family: $arial-font-stack;
+  height: 40px;
+  right: 15px;
+  padding-top: 12px;
+  position: absolute;
+  text-align: center;
+  width: 120px;
+}

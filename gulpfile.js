@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var webserver = require('gulp-webserver');
 var plumber = require('gulp-plumber');
+var merge = require('merge-stream');
 
 var plumberConfig = {
   handleError: function (err) {
@@ -15,7 +16,7 @@ var plumberConfig = {
 
 gulp.task('scripts', function() {
   return gulp.src(['./node_modules/**/angular.min.js',
-                   './node_modules/**/angular-resource.min.js', 
+                   './node_modules/**/angular-resource.min.js',
                    './src/**/app.js', 
                    './src/**/*.js'
     ])
@@ -28,11 +29,9 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('./src/styles/sass/app.scss')
-    .pipe(sourcemaps.init())
+  return gulp.src('./src/styles/sass/app.scss')           
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./public/css/'))
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('watch', function() {

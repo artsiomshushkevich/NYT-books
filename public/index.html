@@ -5,16 +5,24 @@
   <title>NYT books</title>
   <link rel="stylesheet" href="./css/app.css">
 </head>
-<body ng-controller="BooksListController">
-  <section class="books-container">
-   <div class="book" ng-repeat="book in books">
-     <p>{{book.book_details[0].title}}</p>
-     <p>{{book.book_details[0].contributor}} | {{book.book_details[0].publisher}}</p>
-     <p class="book-description">{{book.book_details[0].description}}</p>
-
-     <a href="{{book.amazon_product_url}}" class="buy-link">Amazon</a>
-   </div> 
-  </section>
+<body ng-controller="BooksController">
+  <div class="content-container">
+  <header class="page-header"></header>
+    <select name="booksLists" id="lists" class="selectpicker" ng-model="currentList" ng-change="changeList()">
+     <option ng-repeat="name in names" value="{{name.listName}}">{{name.displayName}}</option>
+    </select>
+    <section class="books-container">
+     <div class="book" ng-repeat="book in books">
+       <p>{{book.book_details[0].title}}</p>
+       <p>{{book.book_details[0].contributor}} | {{book.book_details[0].publisher}}</p>
+       <p class="book-description">{{book.book_details[0].description}}</p>
+       <a href="{{book.amazon_product_url}}" class="buy-link">Amazon</a>
+     </div> 
+    </section>
+    <div class="push"></div>
+  </div>
+  
+  <footer class="page-footer"></footer>
 </body>
 <script src="./js/app.js"></script>
 </html>

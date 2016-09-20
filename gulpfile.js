@@ -5,7 +5,6 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var webserver = require('gulp-webserver');
 var plumber = require('gulp-plumber');
-var merge = require('merge-stream');
 
 var plumberConfig = {
   handleError: function (err) {

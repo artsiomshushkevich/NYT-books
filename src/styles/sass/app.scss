@@ -27,6 +27,7 @@ body {
 .push {
   height: 100px;
 }
+
 .books-container {
   display: flex;
   flex-wrap: wrap;
@@ -84,4 +85,10 @@ a {
 .page-footer {
   background-color: $header-footer-background;
   height: 100px;
+}
+
+.directive-container {
+  display: flex;
+  flex-direction: row;
+  
 }

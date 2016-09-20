@@ -8,9 +8,12 @@
 <body ng-controller="BooksController">
   <div class="content-container">
   <header class="page-header"></header>
-    <select name="booksLists" id="lists" class="selectpicker" ng-model="currentList" ng-change="changeList()">
-     <option ng-repeat="name in names" value="{{name.listName}}">{{name.displayName}}</option>
-    </select>
+    <div class="selectpicker-container">
+      <select name="booksLists" id="lists" class="selectpicker" ng-model="currentList" ng-change="changeList()">
+        <option ng-repeat="name in names" value="{{name.listName}}">{{name.displayName}}</option>
+      </select>
+    </div>
+    
     <section class="books-container">
      <div class="book" ng-repeat="book in books">
        <p>{{book.book_details[0].title}}</p>

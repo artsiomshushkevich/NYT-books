@@ -2,12 +2,18 @@ angular
   .module('nytBooks')
   .controller('BooksController', BooksController);
 
-function BooksController($scope, BooksService, NamesService, ConstantsService) {
+function BooksController($scope, BooksService, NamesService, ConstantsService, ngProgressFactory) {
+  $scope.progressBar = ngProgressFactory.createInstance();
+  $scope.progressBar.setHeight('5px');
+  $scope.progressBar.setColor('#2980b9');
+  
   $scope.currentList = ConstantsService.defaultList;
   
   $scope.changeList = function() {
+    $scope.progressBar.start();
     BooksService.get({list: $scope.currentList}, function(response) {
       $scope.books = response.results;
+      $scope.progressBar.complete();
     });
   };
   
@@ -23,4 +29,4 @@ function BooksController($scope, BooksService, NamesService, ConstantsService) {
   });
 }
 
-BooksController.$inject = ['$scope', 'BooksService', 'NamesService', 'ConstantsService'];
+BooksController.$inject = ['$scope', 'BooksService', 'NamesService', 'ConstantsService', 'ngProgressFactory'];

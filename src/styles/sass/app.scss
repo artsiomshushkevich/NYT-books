@@ -1,7 +1,6 @@
-$arial-font-stack: Arial, sans-serif;
-$flat-blue: #2980b9;
-$background-gray: #ecf0f1;
-$header-footer-background: #464547;
+@import '../partials/variables.scss';
+@import '../partials/books.scss';
+@import '../partials/favorites.scss';
 
 * {
   box-sizing: border-box;
@@ -18,6 +17,10 @@ body {
   background-color: $background-gray;
 }
 
+a {
+  text-decoration: none;
+}
+
 .page-container {
   min-height: 100%;
   margin-bottom: -100px;
@@ -32,75 +35,9 @@ body {
   height: 100px;
 }
 
-.selectpicker-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
-}
-
-.selectpicker {
-  border: 1px solid $header-footer-background;
-  border-radius: 4px;
-  height: 40px;
-  padding: 10px;
- 
-}
-
-.books-container {
-  display: flex;
-  flex-wrap: wrap;
-  font-family: $arial-font-stack;
-  justify-content: space-around;
-  padding: 50px 0px 50px 0px;
-}
-
-.book {
-  background-color: white;
-  font-size: 14px;
-  height: 250px;
-  margin-bottom: 20px;
-  padding: 10px;
-  position: relative;
-  width: 300px;
-  
-  p:first-child {
-    font-weight: bold;
-    font-size: 20px;
-    padding-bottom: 5px;
-  }
-  
-  p:nth-child(2) {
-    font-size: 15px;
-    padding-bottom: 25px;
-  }
-}
-
-.book-description {
-  padding-bottom: 20px;
-}
-
-a {
-  text-decoration: none;
-}
-
-.buy-link {
-  border-radius: 3px;
-  background-color: $flat-blue;
-  bottom: 10px;
-  color: white;
-  display: inline-block;
-  font-family: $arial-font-stack;
-  height: 40px;
-  right: 15px;
-  padding-top: 12px;
-  position: absolute;
-  text-align: center;
-  width: 120px;
-}
-
 .page-header,
 .page-footer {
-  background-color: $header-footer-background;
+  background-color: $flat-gray;
   height: 100px;
 }
 

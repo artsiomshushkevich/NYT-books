@@ -1,6 +1,8 @@
 <div class="selectpicker-container">
   <select name="booksLists" id="lists" class="selectpicker" ng-model="currentList" ng-change="changeList()">
-    <option ng-repeat="name in names" value="{{name.list_name}}">{{name.display_name}}</option>
+    <option ng-repeat="name in names" value="{{name.list_name}}">
+      {{name.display_name}}
+    </option>
   </select>
 </div>
     
@@ -9,12 +11,22 @@
    <p>{{book.book_details[0].title}}</p>
    <p>{{book.book_details[0].contributor}} | {{book.book_details[0].publisher}}</p>
    <p class="book-description">{{book.book_details[0].description}}</p>
-   <button ng-click="addToFavorites(book.book_details[0].primary_isbn13,
-                                    currentList)">
-     to favorites
-    </button>
-   <a href="{{book.amazon_product_url}}" class="buy-link">Amazon</a>
+   <div class="book-options-container">
+     <div class="book-options">
+      <button class="options-button" 
+              ng-click="addToFavorites(book.book_details[0].primary_isbn13, currentList)">
+        To favorites
+      </button>
+      <a class="options-button" ng-href="{{book.amazon_product_url}}">
+        Amazon
+      </a>
+     </div>
+   </div>
   </div> 
 </section>
 
-<a href="/favorites" ng-if="amountOfFavorites !== 0">{{amountOfFavorites}} favorites</a>
+<a class="favorites-link" href="#!/favorites" ng-if="amountOfFavorites !== 0">
+ <div class="text-wrapper">
+   {{amountOfFavorites}} favorites
+ </div>
+</a>

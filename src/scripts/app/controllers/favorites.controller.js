@@ -2,8 +2,14 @@ angular
   .module('nytBooks')
   .controller('FavoritesController', FavoritesController);
 
-function FavoritesController(CustomCookiesService) {
-  var favorites = CustomCookiesService.getFavoritesFromCookies();
+function FavoritesController($scope, FavoritesService) {
+  var favoritesPromise = FavoritesService.getFavoritesPromise();
+  
+  if (favoritesPromise) {
+    favoritesPromise.then(function(favorites) {
+      $scope.favorites = favorites;
+    });
+  }
 }
 
-FavoritesController.$inject = ['CustomCookiesService'];
+FavoritesController.$inject = ['$scope', 'FavoritesService'];

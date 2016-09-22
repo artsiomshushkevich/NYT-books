@@ -6,8 +6,8 @@ function BooksController($scope, BooksService,
                          NamesService, ConstantsService, 
                          ngProgressFactory, CustomCookiesService) {
   $scope.progressBar = ngProgressFactory.createInstance();
-  $scope.progressBar.setHeight('5px');
-  $scope.progressBar.setColor('#2980b9');
+  $scope.progressBar.setHeight('7px');
+  $scope.progressBar.setColor('#ecf0f1');
   
   $scope.currentList = ConstantsService.defaultList;
   

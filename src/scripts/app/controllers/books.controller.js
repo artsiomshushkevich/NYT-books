@@ -4,7 +4,8 @@ angular
 
 function BooksController($scope, BooksService, 
                          NamesService, ConstantsService, 
-                         ngProgressFactory, CustomCookiesService) {
+                         ngProgressFactory, CustomCookiesService,
+                         $location) {
   $scope.progressBar = ngProgressFactory.createInstance();
   $scope.progressBar.setHeight('7px');
   $scope.progressBar.setColor('#ecf0f1');
@@ -44,7 +45,11 @@ function BooksController($scope, BooksService,
     
     $scope.amountOfFavorites = favorites.length;
     CustomCookiesService.putFavoritesToCookies(favorites);
-  }
+  };
+  
+  $scope.goToFavorites = function() {
+    $location.path('/favorites');
+  };
   
   $scope.changeList();
   
@@ -64,5 +69,6 @@ BooksController.$inject = [
   'NamesService', 
   'ConstantsService',                       
   'ngProgressFactory', 
-  'CustomCookiesService'
+  'CustomCookiesService',
+  '$location'
 ];

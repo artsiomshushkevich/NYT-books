@@ -2,23 +2,39 @@ angular
   .module('nytBooks')
   .factory('FavoritesService', FavoritesService);
 
-function FavoritesService($q, BooksService, CustomCookiesService) {
+function FavoritesService($q, BooksService, CustomCookiesService, $timeout) {
   return {
     getFavoritesPromise: function() {
       var favorites = CustomCookiesService.getFavoritesFromCookies();
-
-      if (favorites.length !== 0) {
-        var arrayOfFavoritesPromises = favorites.map(function(favoriteBook) {
-          return getFavoriteBook(favoriteBook.isbn, favoriteBook.listName);
-        });
-        
-        return $q.all(arrayOfFavoritesPromises);
-      } else {
-        return null;
+      var arrayOfFavorites = [];
+      var i = 0;
+      var deferObject = $q.defer();
+      
+      if (favorites !== 0) {
+        nextIteration(); 
       }
+      
+      function nextIteration() {
+        if (i < favorites.length) {
+          getFavoriteBook(favorites[i].isbn, favorites[i].listName)
+            .then(function(favoriteBook) {
+              arrayOfFavorites.push(favoriteBook);
+              i++;
+            
+              $timeout(function() {
+                nextIteration(); 
+              }, 100);
+          });
+        }
+        else {
+          deferObject.resolve(arrayOfFavorites);
+        }
+      }
+      
+      return deferObject.promise;
     }
   };
- 
+
   function getFavoriteBook(isbnArg, listNameArg) {
     var deferObject = $q.defer();
     
@@ -27,8 +43,6 @@ function FavoritesService($q, BooksService, CustomCookiesService) {
       list: listNameArg
     },
     function(response) {
-      console.dir(response.results);
-      
       deferObject.resolve(response);
     });
     
@@ -36,4 +50,4 @@ function FavoritesService($q, BooksService, CustomCookiesService) {
   }
 }
 
-FavoritesService.$inject = ['$q', 'BooksService', 'CustomCookiesService']
+FavoritesService.$inject = ['$q', 'BooksService', 'CustomCookiesService', '$timeout'];

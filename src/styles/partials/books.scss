@@ -46,26 +46,26 @@
   opacity: .7;
 }
 
-.book-options-container {
+.options-container {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform .4s ease-out;
   color: #fff;
   top: 0;
   left: 0;
   padding-top: 55px;
   transform: translateY(-100%) scale(.8);
+  transition: transform .4s ease-out;
   background: rgba(0,0,0,.9);
   z-index: 1;
 }
 
 
-.book:hover .book-options-container {
+.book:hover .options-container {
   transform: translateY(0%) scale(1);
 }
 
-.book-options {
+.options {
   margin: 20px auto;
   width: 50%;
 }
@@ -87,6 +87,7 @@ a.options-button {
   font-size: 13.33px;
   padding-top: 7px;
 }
+
 .options-button:hover {
   background-color: white;
   color: black;
@@ -101,13 +102,11 @@ a.options-button {
   border-radius: 5px;
   height: 40px;
   position: fixed;
-  text-overflow: ellipsis;
   width: 200px;
   right: 20px;
   bottom: 110px;
   transition: background-color 0.3s ease;
 }
-
 
 
 .favorites-link:after {
@@ -121,11 +120,13 @@ a.options-button {
   position: absolute;
   right: -10px;
   width: 15px;
+  transition: background-color 0.3s ease;
 }
 
 .text-wrapper {
   background-color: white;
   border-radius: 5px;
+  bottom: 0px;
   color: $flat-gray;
   font-family: $arial-font-stack;
   height: 100%;
@@ -140,9 +141,9 @@ a.options-button {
 .favorites-link:hover {
   background-color: $flat-gray;
 }
+
 .favorites-link:hover::after {
   background-color: $flat-gray;
-  transition: background-color 0.3s ease;
 }
 
 .favorites-link:hover .text-wrapper {

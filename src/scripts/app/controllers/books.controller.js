@@ -2,10 +2,7 @@ angular
   .module('nytBooks')
   .controller('BooksController', BooksController);
 
-function BooksController($scope, BooksService, 
-                         NamesService, ConstantsService, 
-                         ProgressBarService, CustomCookiesService,
-                         $location) {
+function BooksController($scope, BooksService, NamesService, ConstantsService, ProgressBarService, CustomCookiesService, $location) {
   $scope.currentList = ConstantsService.defaultList;
   
   $scope.changeList = function() {
@@ -76,12 +73,4 @@ function BooksController($scope, BooksService,
   });
 }
 
-BooksController.$inject = [
-  '$scope', 
-  'BooksService',                         
-  'NamesService', 
-  'ConstantsService',                       
-  'ProgressBarService', 
-  'CustomCookiesService',
-  '$location'
-];
+BooksController.$inject = ['$scope', 'BooksService', 'NamesService', 'ConstantsService', 'ProgressBarService', 'CustomCookiesService','$location'];

@@ -1,1 +1,1 @@
-var app = angular.module('nytBooks', ['ngResource', 'ngProgress', 'ngRoute', 'ngCookies']);
+angular.module('nytBooks', ['ngResource', 'ngProgress', 'ngRoute', 'ngCookies']);

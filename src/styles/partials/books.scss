@@ -4,6 +4,12 @@
   padding-top: 40px;
 }
 
+input[type=text] {
+  margin-left: 20px;
+  width: 311px;
+}
+
+input[type=text],
 .selectpicker {
   border: 2px solid $flat-gray;
   border-radius: 4px;
@@ -30,15 +36,19 @@
   transition: opacity .2s ease-in-out;
   width: 300px;
   
-  p:first-child {
+  & > p:first-child {
     font-weight: bold;
     font-size: 20px;
     padding-bottom: 5px;
   }
   
-  p:nth-child(2) {
+  & > p:nth-child(2) {
     font-size: 15px;
     padding-bottom: 25px;
+  }
+  
+  .addition-info {
+    right: 20px;
   }
 }
 

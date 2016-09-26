@@ -4,13 +4,17 @@
       {{name.display_name}}
     </option>
   </select>
+  <input type="text" ng-model="query" placeholder="Type for search...">
 </div>
     
 <section class="books-container">
-  <div class="book" ng-repeat="book in books">
+  <div class="book" ng-repeat="book in books | filter:query">
    <p>{{book.book_details[0].title}}</p>
    <p>{{book.book_details[0].contributor}} | {{book.book_details[0].publisher}}</p>
    <p class="book-description">{{book.book_details[0].description}}</p>
+   <div class="addition-info">
+     <p class="publish-date">Published {{book.published_date}}</p>
+   </div>
    <div class="options-container">
      <div class="options">
       <button class="options-button" 

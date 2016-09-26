@@ -2,16 +2,29 @@ angular
   .module('nytBooks')
   .controller('FavoritesController', FavoritesController);
 
-function FavoritesController($scope, FavoritesService, custo) {
+function FavoritesController($scope, FavoritesService, CustomCookiesService, $location, ProgressBarService) {
   var favoritesPromise = FavoritesService.getFavoritesPromise();
   
+  $scope.isModalWindowShowed = false;
+  
   if (favoritesPromise) {
+    ProgressBarService.start();
     favoritesPromise.then(function(favorites) {
       $scope.favorites = favorites;
+      ProgressBarService.complete();
     });
   }
   
-  $scope.deteleFromFavorites = function(deletedIsbn) {
+  $scope.showModalWindow = function(currentBook) {
+    $scope.currentBook = currentBook;
+    $scope.isModalWindowShowed = true;
+  };
+  
+  $scope.closeModalWindow = function() {
+    $scope.isModalWindowShowed = false;
+  };
+  
+  $scope.deleteFromFavorites = function(deletedIsbn) {
     var favorites = CustomCookiesService.getFavoritesFromCookies();
     
     for (var i = 0; i < $scope.favorites.length; i++) {
@@ -19,7 +32,7 @@ function FavoritesController($scope, FavoritesService, custo) {
         $scope.favorites.splice(i, 1);
         
         for (var j = 0; j < favorites.length; j++) {
-          if (favorites.isbn === deletedIsbn) {
+          if (favorites[j].isbn === deletedIsbn) {
             favorites.splice(i, 1);
             CustomCookiesService.putFavoritesToCookies(favorites);
             
@@ -30,7 +43,11 @@ function FavoritesController($scope, FavoritesService, custo) {
         break;
       }
     }
+    
+    if (favorites.length === 0) {
+      $location.path('/');
+    }
   };
 }
 
-FavoritesController.$inject = ['$scope', 'FavoritesService', 'CustomCookiesService'];
+FavoritesController.$inject = ['$scope', 'FavoritesService', 'CustomCookiesService', '$location', 'ProgressBarService'];

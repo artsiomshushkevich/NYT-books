@@ -17,6 +17,10 @@ function CustomCookiesService($cookies) {
     
     putFavoritesToCookies: function(favorites) {
       $cookies.put('favorites', JSON.stringify(favorites));
+    }, 
+    
+    deleteAllFavoritesFromCookies: function() {
+      $cookies.put('favorites', JSON.stringify([]));
     }
   };
 }

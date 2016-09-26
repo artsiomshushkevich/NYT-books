@@ -1,0 +1,61 @@
+.modal-window-container {
+  background-color: rgba(0,0,0,0.4);
+  bottom: 0px;
+  height: 100%;
+  position: fixed;
+  right: 0px;
+  overflow: auto;
+  width: 100%;
+  z-index: 1;
+}
+
+.modal-window {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  font-family: $arial-font-stack;
+  margin: 15% auto; 
+  padding: 100px;
+  position: relative;
+  text-align: center;
+  width: 60%;
+  animation: animatetop 0.4s;
+  
+  p {
+    margin-bottom: 20px;
+  }
+  
+  & > p:first-child {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  & > p:nth-child(2) {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  
+  .addition-info p {
+    margin-bottom: 5px;
+  }
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.close {
+  top: 20px;
+  color: black;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 35px;
+  text-align: right;
+  
+  span {
+    cursor: pointer;
+  }
+}

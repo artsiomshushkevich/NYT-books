@@ -1,6 +1,7 @@
 @import '../partials/variables.scss';
 @import '../partials/books.scss';
 @import '../partials/favorites.scss';
+@import '../partials/modal-window.scss';
 
 * {
   box-sizing: border-box;
@@ -29,6 +30,19 @@ a {
 .content-container {
   margin: 0px auto;
   width: 70%;
+}
+
+.addition-info {
+  bottom: 10px;
+  position: absolute;
+  right: 35px;
+}
+
+.contributor,
+.publish-date {
+  color: $flat-light-gray;
+  font-size: 14px;
+  text-align: right;  
 }
 
 .push {

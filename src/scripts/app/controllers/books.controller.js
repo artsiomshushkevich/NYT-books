@@ -4,21 +4,29 @@ angular
 
 function BooksController($scope, BooksService, 
                          NamesService, ConstantsService, 
-                         ngProgressFactory, CustomCookiesService,
+                         ProgressBarService, CustomCookiesService,
                          $location) {
-  $scope.progressBar = ngProgressFactory.createInstance();
-  $scope.progressBar.setHeight('7px');
-  $scope.progressBar.setColor('#ecf0f1');
-  
   $scope.currentList = ConstantsService.defaultList;
   
   $scope.changeList = function() {
-    $scope.progressBar.start();
+    ProgressBarService.start();
     
     BooksService.get({list: $scope.currentList}, function(response) {
       $scope.books = response.results;
-      $scope.progressBar.complete();
+      ProgressBarService.complete();
     });
+  };
+  
+  $scope.isBookExistInFavorites = function(isbn) {
+    var favorites = CustomCookiesService.getFavoritesFromCookies();
+    
+    for (var i = 0; i < favorites.length; i++) {
+      if (favorites[i].isbn === isbn) {
+        return true;
+      }
+    }
+    
+    return false;
   };
   
   $scope.addToFavorites = function(isbnArg, listNameArg) {
@@ -47,6 +55,11 @@ function BooksController($scope, BooksService,
     CustomCookiesService.putFavoritesToCookies(favorites);
   };
   
+  $scope.deleteAllFavorites = function() {
+    CustomCookiesService.deleteAllFavoritesFromCookies();
+    $scope.amountOfFavorites = 0;
+  };
+  
   $scope.goToFavorites = function() {
     $location.path('/favorites');
   };
@@ -68,7 +81,7 @@ BooksController.$inject = [
   'BooksService',                         
   'NamesService', 
   'ConstantsService',                       
-  'ngProgressFactory', 
+  'ProgressBarService', 
   'CustomCookiesService',
   '$location'
 ];

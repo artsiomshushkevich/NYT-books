@@ -15,7 +15,14 @@
      <div class="options">
       <button class="options-button" 
               ng-click="addToFavorites(book.book_details[0].primary_isbn13, currentList)">
-        To favorites
+              
+        <span ng-if="!isBookExistInFavorites(book.book_details[0].primary_isbn13)">
+          To
+        </span>
+        <span ng-if="isBookExistInFavorites(book.book_details[0].primary_isbn13)">
+          From
+        </span>
+        favorites
       </button>
       
       <a class="options-button" target="_blank" ng-href="{{book.amazon_product_url}}">
@@ -28,6 +35,10 @@
 
 <button class="favorites-link" ng-if="amountOfFavorites !== 0" ng-click="goToFavorites()">
   <div class="text-wrapper">
-   <span>{{amountOfFavorites}} favorites</span>
+   <span>{{amountOfFavorites}} favorites   </span>
+   <span class="delete-favorites" ng-click="deleteAllFavorites();
+                                           $event.stopPropagation();"> 
+    X
+   </span>
   </div>
 </button>

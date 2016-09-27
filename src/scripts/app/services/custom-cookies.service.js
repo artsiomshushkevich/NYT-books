@@ -20,7 +20,7 @@ function CustomCookiesService($cookies) {
     }, 
     
     deleteAllFavoritesFromCookies: function() {
-      $cookies.put('favorites', JSON.stringify([]));
+      $cookies.remove('favorites');
     }
   };
 }

@@ -21,7 +21,7 @@ gulp.task('scripts', function() {
                    './node_modules/**/jquery.min.js',
                    './src/**/ngProgress.min.js',
                    './src/**/app.js', 
-                   './src/**/*.js'
+                   './src/scripts/app/**/*.js'
     ])
     .pipe(plumber(plumberConfig))
     .pipe(sourcemaps.init())

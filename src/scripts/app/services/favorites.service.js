@@ -19,6 +19,7 @@ function FavoritesService($q, BooksService, CustomCookiesService, $timeout) {
           getFavoriteBook(favorites[i].isbn, favorites[i].listName)
             .then(function(favoriteBook) {
               arrayOfFavorites.push(favoriteBook);
+            
               i++;
             
               $timeout(function() {

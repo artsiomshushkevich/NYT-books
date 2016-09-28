@@ -23,7 +23,7 @@ module.exports = function(config) {
       './src/**/ngProgress.min.js',
       './src/scripts/app/app.js', 
       './src/scripts/app/**/*.js',
-      './src/scripts/specs/**/*.js'
+      './src/scripts/tests/**/*.js'
     ],
 
 

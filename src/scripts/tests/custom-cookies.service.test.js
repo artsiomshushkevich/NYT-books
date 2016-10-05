@@ -35,8 +35,7 @@ describe('CustomCookiesService', function() {
     
       var favorites = JSON.parse($cookies.get('favorites'));
       
-      expect(favorites).toEqual(testArrayOfFavorites);
-  
+      expect(favorites).toEqual(testArrayOfFavorites); 
     });
     
     it('puts whole new array into cookies and replaces old', function() {
@@ -58,7 +57,6 @@ describe('CustomCookiesService', function() {
       expect(newFavorites).toEqual(favorites);
     });
   });
-  
   
   describe('#deleteAllFavoritesFromCookies', function() {
     var tempArrayOfFavorites;
@@ -113,7 +111,6 @@ describe('CustomCookiesService', function() {
       var favorites = CustomCookiesService.getFavoritesFromCookies();
       
       expect(favorites).toEqual([]);
-    })
-  })
-  
+    });
+  }); 
 });

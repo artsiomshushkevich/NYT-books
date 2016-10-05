@@ -17,8 +17,7 @@ describe("BooksController", function() {
       ConstantsService = $injector.get('ConstantsService');
       ProgressBarService = $injector.get('ProgressBarService');
       CustomCookiesService = $injector.get('CustomCookiesService');
-      $location = $injector.get('$location');
-      
+      $location = $injector.get('$location');  
       
       createController  = function() {
         return $controller('BooksController', {
@@ -30,9 +29,8 @@ describe("BooksController", function() {
           CustomCookiesService: CustomCookiesService,
           $location: $location
         });
-      }
-     
-      
+      };
+           
       namesRequestHandler = $httpBackend
         .when('GET', 
               'https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=3a1e141439d84f62ad4440e6a2d96e77')
@@ -92,7 +90,7 @@ describe("BooksController", function() {
       $httpBackend.flush();
       
       expect(ProgressBarService.start).toHaveBeenCalled();
-    })
+    });
     
     it('should invoke method complete after downloading resources', function(){
       spyOn(ProgressBarService, 'complete');

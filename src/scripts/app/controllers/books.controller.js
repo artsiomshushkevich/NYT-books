@@ -5,19 +5,19 @@ angular
 function BooksController($scope, BooksService, NamesService, ConstantsService, ProgressBarService, CustomCookiesService, $location) {
   $scope.currentList = ConstantsService.defaultList;
   
-  $scope.changeList = function() {
+  $scope.changeList = () => {
     ProgressBarService.start();
     
-    BooksService.get({list: $scope.currentList}, function(response) {
+    BooksService.get({list: $scope.currentList}, (response) => {
       $scope.books = response.results;
       ProgressBarService.complete();
     });
   };
   
-  $scope.isBookExistInFavorites = function(isbn) {
-    var favorites = CustomCookiesService.getFavoritesFromCookies();
+  $scope.isBookExistInFavorites = (isbn) => {
+    let favorites = CustomCookiesService.getFavoritesFromCookies();
     
-    for (var i = 0; i < favorites.length; i++) {
+    for (let i = 0; i < favorites.length; i++) {
       if (favorites[i].isbn === isbn) {
         return true;
       }
@@ -26,17 +26,17 @@ function BooksController($scope, BooksService, NamesService, ConstantsService, P
     return false;
   };
   
-  $scope.addToFavorites = function(isbnArg, listNameArg) {
-    var favorites = CustomCookiesService.getFavoritesFromCookies();
+  $scope.addToFavorites = (isbnArg, listNameArg) => {
+    let favorites = CustomCookiesService.getFavoritesFromCookies();
     
-    var newFavoriteBook = {
+    let newFavoriteBook = {
       isbn: isbnArg,
       listName: listNameArg
     };
     
-    var isBookExist = false;
+    let isBookExist = false;
     
-    for (var i = 0; i < favorites.length; i++) {
+    for (let i = 0; i < favorites.length; i++) {
       if (favorites[i].isbn === isbnArg) {
         favorites.splice(i, 1);
         isBookExist = true;
@@ -52,21 +52,21 @@ function BooksController($scope, BooksService, NamesService, ConstantsService, P
     CustomCookiesService.putFavoritesToCookies(favorites);
   };
   
-  $scope.deleteAllFavorites = function() {
-    CustomCookiesService.deleteAllFavoritesFromCookies();
-    $scope.amountOfFavorites = 0;
-  };
-  
-  $scope.goToFavorites = function() {
-    $location.path('/favorites');
+  $scope.favoritesButtonClick = ($event) => {
+    if ($event.target.classList.contains('delete-favorites')) {
+      CustomCookiesService.deleteAllFavoritesFromCookies();
+      $scope.amountOfFavorites = 0;
+    } else {
+      $location.path('/favorites');
+    }
   };
   
   $scope.changeList();
   
   $scope.amountOfFavorites = CustomCookiesService.getFavoritesFromCookies().length;
   
-  NamesService.get({}, function(response) {
-    $scope.names = response.results.map(function(item) {
+  NamesService.get({}, (response) => {
+    $scope.names = response.results.map((item) => {
       item.list_name = item.list_name.replace(' ', '-'); //url should contain hyphens instead spaces
       return item;
     });

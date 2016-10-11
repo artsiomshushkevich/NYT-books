@@ -6,6 +6,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var webserver = require('gulp-webserver');
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
+var babel = require('gulp-babel');
 
 var plumberConfig = {
   handleError: function (err) {
@@ -26,6 +27,7 @@ gulp.task('scripts', function() {
     ])
     .pipe(plumber(plumberConfig))
     .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
@@ -34,7 +36,7 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function() {
   return gulp.src('./src/styles/sass/app.scss')
-    .pipe(sass({/*outputStyle: 'compressed'*/}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: ['last 2 versions', 'ie 9']
     })) 

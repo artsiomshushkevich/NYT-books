@@ -37,12 +37,11 @@
   </div> 
 </section>
 
-<button class="favorites-link" ng-if="amountOfFavorites !== 0" ng-click="goToFavorites()">
+<div class="favorites-link" ng-if="amountOfFavorites !== 0" ng-click="favoritesButtonClick($event)">
   <div class="text-wrapper">
    <span>{{amountOfFavorites}} favorites   </span>
-   <span class="delete-favorites" ng-click="deleteAllFavorites();
-                                           $event.stopPropagation();"> 
+   <span class="delete-favorites" > 
     X
    </span>
   </div>
-</button>
+</div>

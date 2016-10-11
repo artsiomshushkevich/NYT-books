@@ -9,6 +9,7 @@ function FavoritesController($scope, FavoritesService, CustomCookiesService, $lo
   
   if (favoritesPromise) {
     ProgressBarService.start();
+    
     favoritesPromise.then(function(favorites) {
       $scope.favorites = favorites;
       ProgressBarService.complete();

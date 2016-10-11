@@ -10,6 +10,8 @@ NYT Books
 
 1. Download/clone a repository [NYT-books](https://github.com/artsiomshushkevich/NYT-books.git)
 2. Run in the root directory of the application `npm install`
+4. Run `gulp scripts`
+5. Run `gulp styles`
 3. Run `gulp start`
 
 > If you don't have ***npm or node.js*** installed on your local machine, please, wisit [Getting started page](https://docs.npmjs.com/getting-started) and follow the instructions.
@@ -20,8 +22,8 @@ NYT Books
 > 1. `gulp start` - deploys application on local server(port 8085) and starts javascript- and sass-watchers
 > 2. `gulp server` - deploys application on local server(port 8085)
 > 3. `gulp watch` - starts watching all the changes of files with extensions `.js` and `.scss` in `app/` directory
-> 4. `gulp scripts` - concats and minifies all the external files and files from `app/` directory (files have .js extension) 
-> 5. `gulp styles` - compiles `.scss` files to `.css` and minifies them
+> 4. `gulp scripts` - concats and minifies all the external files and files from `app/` directory (files have .js extension) and places result file to `public/js/` directory
+> 5. `gulp styles` - compiles `.scss` files to `.css`, minifies and places result file to `public/css/` directory
 
 ===
 

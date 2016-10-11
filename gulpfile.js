@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var webserver = require('gulp-webserver');
 var plumber = require('gulp-plumber');
+var autoprefixer = require('gulp-autoprefixer');
 
 var plumberConfig = {
   handleError: function (err) {
@@ -32,8 +33,11 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('./src/styles/sass/app.scss')           
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+  return gulp.src('./src/styles/sass/app.scss')
+    .pipe(sass({/*outputStyle: 'compressed'*/}).on('error', sass.logError))
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions', 'ie 9']
+    })) 
     .pipe(gulp.dest('./public/css'));
 
 });

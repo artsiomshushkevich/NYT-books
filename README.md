@@ -10,8 +10,6 @@ NYT Books
 
 1. Download/clone a repository [NYT-books](https://github.com/artsiomshushkevich/NYT-books.git)
 2. Run in the root directory of the application `npm install`
-4. Run `gulp scripts`
-5. Run `gulp styles`
 3. Run `gulp start`
 
 > If you don't have ***npm or node.js*** installed on your local machine, please, wisit [Getting started page](https://docs.npmjs.com/getting-started) and follow the instructions.

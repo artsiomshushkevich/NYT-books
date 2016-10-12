@@ -137,6 +137,7 @@ a.options-button {
   border-radius: 5px;
   bottom: 0px;
   color: $flat-gray;
+  cursor: pointer;
   font-family: $arial-font-stack;
   height: 100%;
   padding-top: 10px;
@@ -161,6 +162,5 @@ a.options-button {
 }
 
 .delete-favorites {
-  cursor: pointer;
   font-size: 15px;
 }

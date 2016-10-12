@@ -56,6 +56,6 @@ gulp.task('server', function() {
     }));
 });
 
-gulp.task('start', ['watch', 'server']);
+gulp.task('start', ['scripts','styles','watch', 'server']);
 
   

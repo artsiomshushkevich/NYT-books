@@ -15,11 +15,11 @@ var plumberConfig = {
 };
 
 gulp.task('scripts', function() {
-  return gulp.src(['./node_modules/**/angular.min.js',
-                   './node_modules/**/angular-resource.min.js',
-                   './node_modules/**/angular-route.min.js',
-                   './node_modules/**/angular-cookies.min.js',
-                   './node_modules/**/jquery.min.js',
+  return gulp.src(['../node_modules/**/angular.min.js',
+                   '../node_modules/**/angular-resource.min.js',
+                   '../node_modules/**/angular-route.min.js',
+                   '../node_modules/**/angular-cookies.min.js',
+                   '../node_modules/**/jquery.min.js',
                    './src/**/ngProgress.min.js',
                    './src/**/app.js', 
                    './src/scripts/app/**/*.js'
@@ -34,7 +34,7 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function() {
   return gulp.src('./src/styles/sass/app.scss')
-    .pipe(sass({/*outputStyle: 'compressed'*/}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: ['last 2 versions', 'ie 9']
     })) 

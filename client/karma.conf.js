@@ -15,11 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './node_modules/**/angular.min.js',
-      './node_modules/**/angular-resource.min.js',
-      './node_modules/**/angular-route.min.js',
-      './node_modules/**/angular-cookies.min.js',
-      './node_modules/angular-mocks/angular-mocks.js',
+      '../node_modules/**/angular.min.js',
+      '../node_modules/**/angular-resource.min.js',
+      '../node_modules/**/angular-route.min.js',
+      '../node_modules/**/angular-cookies.min.js',
+      '../node_modules/angular-mocks/angular-mocks.js',
       './src/**/ngProgress.min.js',
       './src/scripts/app/app.js', 
       './src/scripts/app/**/*.js',

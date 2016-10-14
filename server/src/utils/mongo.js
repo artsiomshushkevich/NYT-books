@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var BaseMongoService = require('./baseMongoService');
+var BaseMongoService = require('./../services/base-mongo.service');
 var config = require('../config/config');
 
 function Mongo(mongo) {

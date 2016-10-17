@@ -64,7 +64,7 @@ describe("BooksController", function() {
     $httpBackend.flush();
   });
   
-  it('should set books, names, amountOfFavorites and currentList in controllers $scope', function() {
+  it('should set books, names, amountOfFavorites and currentList in routers $scope', function() {
     var controller = createController();
     
     expect($scope.currentList).toEqual('hardcover-fiction');

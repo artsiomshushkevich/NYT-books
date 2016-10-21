@@ -1,0 +1,25 @@
+<div class="modal-window-container">
+  <div class="modal-window">
+    <p>
+      {{bookData.results[0].list_name}}
+    </p>
+    <p>
+      {{bookData.results[0].book_details[0].title}}
+    </p>
+    <p>
+      {{bookData.results[0].book_details[0].description}}
+    </p>
+    <a ng-if="bookData.results[0].reviews[0].book_review_link"
+       href="{{bookData.results[0].reviews[0].book_review_link}}"
+       target="_blank">
+      Go to review
+    </a>
+    <div class="close">
+      <span ng-click="closeModalWindow()">X</span>
+    </div>
+    <div class="addition-info">
+      <p class="publish-date">Published {{bookData.results[0].published_date}}</p>
+      <p class="contributor">{{bookData.results[0].book_details[0].contributor}}</p>
+    </div>
+  </div>
+</div>

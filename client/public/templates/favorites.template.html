@@ -1,0 +1,27 @@
+<section class="favorites-container">
+  <div class="favorite-book" ng-repeat="book in favorites">
+    <p>{{book.results[0].book_details[0].title}}</p>
+    <p>{{book.results[0].book_details[0].description}}</p>
+    
+    <div class="addition-info">
+      <p class="publish-date">Published {{book.results[0].published_date}}</p>
+      <p class="contributor">{{book.results[0].book_details[0].contributor}}</p>
+    </div>
+    
+    <div class="options-container">
+     <div class="options">
+      <button class="options-button" 
+              ng-click="deleteFromFavorites(book.results[0].book_details[0].primary_isbn13)">
+        From favorites
+      </button>
+      <button class="options-button" ng-click="showModalWindow(book)">
+        More info
+      </button>
+     </div>
+   </div>
+  </div>
+  <modal-window-directive ng-if="isModalWindowShowed"
+                          book-data="currentBook"
+                          close-modal-window="closeModalWindow()">                        
+  </modal-window-directive>
+</section>  

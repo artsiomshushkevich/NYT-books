@@ -4,6 +4,7 @@ var constants = require('../utils/constants');
 var userValidationSchema = require('../validation-schemas/user.schema');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
+var bcrypt = require('bcrypt');
 
 var router = express.Router();
 
@@ -23,24 +24,27 @@ router.post('/register', function(req, res) {
                     res.status(400).send({message: constants.errorMessages.BUSY_USERNAME});
                 } else {
                     var newUser = {
-                        username: req.body.username,
-                        password: req.body.password,
+                        username: req.body.username
                     };
 
-                    if (req.body.firstname) {
-                        newUser.firstname = req.body.firstname;
-                    }
+                    bcrypt.hash(req.body.password, config.saltRounds, function(err, hash) {
+                        newUser.password = hash;
 
-                    if (req.body.lastname) {
-                        newUser.lastname = req.body.lastname;
-                    }
+                        if (req.body.firstname) {
+                            newUser.firstname = req.body.firstname;
+                        }
 
-                    userService.create(newUser)
-                        .then(function() {
-                            var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
+                        if (req.body.lastname) {
+                            newUser.lastname = req.body.lastname;
+                        }
 
-                            res.status(200).send({token: jwtToken});
-                        });
+                        userService.create(newUser)
+                            .then(function() {
+                                var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
+
+                                res.status(200).send({token: jwtToken});
+                            });
+                    });
                 }
             });
 
@@ -56,13 +60,18 @@ router.post('/login', function(req, res) {
         res.status(400).send(errors);
     } else {
         userService.findOne({
-            username: req.body.username,
-            password: req.body.password
+            username: req.body.username
         }).then(function(user) {
             if (user) {
-                var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
+                bcrypt.compare(req.body.password, user.password, function (err, result) {
+                    if (result) {
+                        var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
 
-                res.status(200).send({token: jwtToken});
+                        res.status(200).send({token: jwtToken});
+                    } else {
+                        res.status(400).send({message: constants.errorMessages.INVALID_CREDENTIALS});
+                    }
+                });
             } else {
                 res.status(400).send({message: constants.errorMessages.INVALID_CREDENTIALS});
             }

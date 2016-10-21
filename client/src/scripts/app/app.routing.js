@@ -1,22 +1,28 @@
-angular
-  .module('nytBooks')
-  .config(config);
+(function() {
+  angular
+    .module('nytBooks')
+    .config(Config);
 
-function config($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-  
-  $routeProvider.
-    when('/', {
-      templateUrl: '../templates/books.template.html',
-      controller: BooksController
-    }).
-    when('/favorites', {
-      templateUrl: '../templates/favorites.template.html',
-      controller: FavoritesController
-    }).
-    otherwise({
-      redirectTo: '/'
-    });
-}
+  Config.$inject = ['$locationProvider', '$routeProvider'];
 
-config.$inject = ['$locationProvider', '$routeProvider'];
+  function Config($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
+    
+    $routeProvider.
+      when('/', {
+        templateUrl: '../templates/controllers/home.template.html',
+        controller: 'HomeController'
+      }).
+      when('/books', {
+        templateUrl: '../templates/controllers/books.template.html',
+        controller: 'BooksController'
+      }).
+      when('/favorites', {
+        templateUrl: '../templates/controllers/favorites.template.html',
+        controller: 'FavoritesController'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+  }
+})();

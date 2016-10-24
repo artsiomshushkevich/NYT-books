@@ -7,9 +7,10 @@
     return {
       templateUrl: '../templates/modals/register-modal-window.template.html',
       scope: {
-        bookData: '=',
         closeModalWindow: '&'
-      }
+      },
+      controller: '@',
+      name: 'controllerName'
     };
   }
 })();

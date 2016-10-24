@@ -1,0 +1,41 @@
+.register-modal {
+  position: relative;
+  width: 700px;
+}
+
+form .form-input {
+  display: block;
+  margin: 10px auto;
+}
+
+.form-actions {
+  bottom: 30px;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 30px;
+  width: 100%;
+}
+
+.form-button {
+  border: 0px;
+  background-color: $flat-blue;
+  border-radius: 4px;
+  color: white;
+  height: 40px;
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+  width: 120px;
+}
+
+.form-button-close {
+  @extend .form-button;
+
+  background-color: $flat-red;
+}
+
+.form-button:hover {
+  opacity: 0.7;
+}
+
+

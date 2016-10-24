@@ -17,25 +17,19 @@
       var user = {
         username: $scope.username,
         password: $scope.password,
-        confirmPassword: $scope.confirmPassword
+        confirmPassword: $scope.confirmPassword,
+        firstname: $scope.firstname,
+        lastname: $scope.lastname
       };
-
-      if ($scope.firstname) {
-        user.firstname = $scope.firstname;
-      }
-
-      if ($scope.lastname) {
-        user.lastname = $scope.lastname;
-      }
 
       UserHttpService.register(user)
         .then(function(reponse) {
-          console.log(response);
-        }, function(error) {
+          $scope.closeModalWindow();
+        }, function(response) {
           $scope.areThereErrors = true;
           
+          $scope.errors = response.data;
         });
     };
   }
-
 })();

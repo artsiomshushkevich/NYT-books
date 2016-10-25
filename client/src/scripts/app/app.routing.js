@@ -1,7 +1,8 @@
 (function() {
   angular
     .module('nytBooks')
-    .config(Config);
+    .config(Config)
+    .run(CredentialsChecker);
 
   Config.$inject = ['$locationProvider', '$routeProvider'];
 
@@ -23,6 +24,17 @@
       }).
       otherwise({
         redirectTo: '/'
-      });
+      })
   }
+
+  CredentialsChecker.$inject = ['$rootScope', 'CredentialsStorageService','$location'];
+
+  function CredentialsChecker($rootScope, CredentialsStorageService, $location) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+      if (!CredentialsStorageService.getCredentials()) {
+        $location.path('/');
+      }
+    });
+  }
+  
 })();

@@ -85,4 +85,66 @@ router.post('/login', function(req, res) {
     }
 });
 
+router.post('/favorites/add-to-favorites', function(req, res) {
+    userService.findOne({
+        username: req.body.username
+    }).then(function(user) {
+        var favorites = user.favorites;
+        var newIsbn = req.body.isbn;
+
+        req.checkBody('isbn', constants.errorMessages.INVALID_ISBN).matches(constants.regularExpressions.ISBN);
+
+        var errors = req.validationErrors();
+
+        if (errors) {
+            res.status(400).send(errors);
+            return;
+        }
+
+        if (favorites.indexOf(newIsbn) !== -1) {
+            res.status(400).send([{msg: constants.errorMessages.EXISTS_IN_FAVORITES}]);
+            return;
+        }
+
+        favorites.push(newIsbn);
+
+        userService.update(user)
+            .then(function() {
+                res.sendStatus(200);
+            });
+    });
+});
+
+
+router.delete('/favorites/delete-all',function(req, res) {
+    userService.findOne({
+        username: req.body.username
+    }).then(function(user) {
+        user.favorites = [];
+
+        userService.update(user)
+            .then(function() {
+                res.sendStatus(200);
+            });
+    });
+});
+
+router.delete('/favorites/delete-one', function(req, res) {
+    userService.findOne({
+        username: req.body.username
+    }).then(function(user) {
+        var favorites = user.favorites;
+        var deletedIsbn = req.body.isbn;
+
+        var indexOfDeletedIsbn = favorites.indexOf(deletedIsbn);
+
+        user.favorites.splice(indexOfDeletedIsbn, 1);
+
+        userService.update(user)
+            .then(function() {
+                res.sendStatus(200);
+            });
+    });
+});
+
 module.exports = router;

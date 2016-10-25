@@ -19,4 +19,8 @@ BaseMongoService.prototype.findOne = function(query) {
     return this.collection.findOne(query);
 };
 
+BaseMongoService.prototype.update = function(collection) {
+    return collection.save();
+}
+
 module.exports = BaseMongoService;

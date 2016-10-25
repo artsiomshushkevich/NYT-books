@@ -2,15 +2,16 @@ var mongoose = require('mongoose');
 
 module.exports = new mongoose.Schema({
     username: {
-        type: String,
+        type: String
     },
     password: {
-        type: String,
+        type: String
     },
     firstname: {
         type: String
     },
     lastname: {
         type: String
-    }
+    },
+    favorites: [String]
 });

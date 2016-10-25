@@ -3,15 +3,17 @@
     .module('nytBooks')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', 'CredentialsStorageService'];
+  HomeController.$inject = ['$scope', 'CredentialsStorageService', '$location'];
 
   function HomeController($scope, CredentialsStorageService) {
     $scope.isRegisterModalWindowOpened = false;
     $scope.isLoginModalWindowOpened = false;
 
     $scope.toggleRegisterModalWindow = function() {
-      var token = CredentialsStorageService.getCredentials();
-      
+      if (CredentialsStorageService.getCredentials()) {
+        
+      }
+
       $scope.isRegisterModalWindowOpened = !$scope.isRegisterModalWindowOpened;
     };
 

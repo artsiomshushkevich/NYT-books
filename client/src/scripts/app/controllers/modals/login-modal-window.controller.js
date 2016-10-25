@@ -3,9 +3,9 @@
     .module('nytBooks')
     .controller('LoginModalWindowController', LoginModalWindowController);
   
-  LoginModalWindowController.$inject = ['$scope', 'UserHttpService'];
+  LoginModalWindowController.$inject = ['$scope', 'UserHttpService', 'CredentialsStorageService'];
 
-  function LoginModalWindowController($scope, UserHttpService) {
+  function LoginModalWindowController($scope, UserHttpService, CredentialsStorageService) {
     $scope.errors = [];
     $scope.areThereErrors = false;
 
@@ -20,7 +20,9 @@
       };
 
       UserHttpService.login(user)
-        .then(function(reponse) {
+        .then(function(response) {
+          CredentialsStorageService.setCredentials(response.data);
+
           $scope.closeModalWindow();
         }, function(response) {
           $scope.areThereErrors = true;

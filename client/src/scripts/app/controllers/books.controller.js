@@ -3,9 +3,10 @@
     .module('nytBooks')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', 'BooksHttpService', 'ConstantsService', 'ProgressBarService', 'CustomCookiesService','$location'];
+  BooksController.$inject = ['$scope', 'BooksHttpService', 'ConstantsService', 'ProgressBarService','TokenStorageService','$location'];
 
-  function BooksController($scope, BooksHttpService, ConstantsService, ProgressBarService, CustomCookiesService, $location) {
+  function BooksController($scope, BooksHttpService, ConstantsService, ProgressBarService, TokenStorageService, $location) {
+    if (TokenStorageService.getToken)
     $scope.currentList = ConstantsService.defaultList;
     
     $scope.changeList = function() {

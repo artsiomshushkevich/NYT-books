@@ -1,0 +1,11 @@
+<div class="errors-box">
+  <p class="close-errors-box">
+    <span ng-click="closeErrorsBox()">
+      X
+    </span> 
+  </p>
+  <p ng-repeat="error in errors">
+    <span ng-if="error.param">{{error.param}}:</span>
+    <span>{{error.msg}}</span>
+  </p>
+</div>

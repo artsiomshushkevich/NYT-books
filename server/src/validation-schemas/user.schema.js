@@ -1,4 +1,4 @@
-var constants = require('../utils/constants')
+var constants = require('../utils/constants');
 
 module.exports = {
     'username': {

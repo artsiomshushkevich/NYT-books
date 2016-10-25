@@ -21,7 +21,7 @@ router.post('/register', function(req, res) {
         userService.exists({username: req.body.username})
             .then(function(isBusy) {
                 if (isBusy) {
-                    res.status(400).send({message: constants.errorMessages.BUSY_USERNAME});
+                    res.status(400).send([{msg: constants.errorMessages.BUSY_USERNAME}]);
                 } else {
                     var newUser = {
                         username: req.body.username
@@ -42,7 +42,10 @@ router.post('/register', function(req, res) {
                             .then(function() {
                                 var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
 
-                                res.status(200).send({token: jwtToken});
+                                res.status(200).send({
+                                    token: jwtToken,
+                                    username: req.body.username
+                                });
                             });
                     });
                 }
@@ -67,13 +70,16 @@ router.post('/login', function(req, res) {
                     if (result) {
                         var jwtToken = jwt.sign({username: req.body.username}, config.secretKey);
 
-                        res.status(200).send({token: jwtToken});
+                        res.status(200).send({
+                            token: jwtToken,
+                            username: req.body.username
+                        });
                     } else {
-                        res.status(400).send({message: constants.errorMessages.INVALID_CREDENTIALS});
+                        res.status(400).send([{msg: constants.errorMessages.INVALID_CREDENTIALS}]);
                     }
                 });
             } else {
-                res.status(400).send({message: constants.errorMessages.INVALID_CREDENTIALS});
+                res.status(400).send([{msg: constants.errorMessages.INVALID_CREDENTIALS}]);
             }
         });
     }

@@ -3,9 +3,9 @@
     .module('nytBooks')
     .controller('RegisterModalWindowController', RegisterModalWindowController);
   
-  RegisterModalWindowController.$inject = ['$scope', 'UserHttpService'];
+  RegisterModalWindowController.$inject = ['$scope', 'UserHttpService', 'CredentialsStorageService'];
 
-  function RegisterModalWindowController($scope, UserHttpService) {
+  function RegisterModalWindowController($scope, UserHttpService, CredentialsStorageService) {
     $scope.errors = [];
     $scope.areThereErrors = false;
 
@@ -23,7 +23,9 @@
       };
 
       UserHttpService.register(user)
-        .then(function(reponse) {
+        .then(function(response) {
+          CredentialsStorageService.setCredentials(response.data);
+          
           $scope.closeModalWindow();
         }, function(response) {
           $scope.areThereErrors = true;

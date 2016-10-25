@@ -16,10 +16,8 @@ var plumberConfig = {
 
 gulp.task('scripts', function() {
   return gulp.src(['../node_modules/**/angular.min.js',
-                   '../node_modules/**/angular-resource.min.js',
                    '../node_modules/**/angular-route.min.js',
                    '../node_modules/**/angular-cookies.min.js',
-                   '../node_modules/**/jquery.min.js',
                    './src/**/ngProgress.min.js',
                    './src/**/app.js', 
                    './src/scripts/app/**/*.js'
@@ -27,7 +25,7 @@ gulp.task('scripts', function() {
     .pipe(plumber(plumberConfig))
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/js'));
 });

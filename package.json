@@ -38,14 +38,12 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-cookies": "^1.5.8",
-    "angular-resource": "^1.5.8",
     "angular-route": "^1.5.8",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
     "express-validator": "^2.20.10",
-    "jquery": "^3.1.0",
     "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.3"
   }

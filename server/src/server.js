@@ -34,9 +34,9 @@ app.use('/api/user', userRouter);
 
 app.use(function(err, req, res, next) {
     if (err.status === 401) {
-        res.status(401).send({message: constants.errorMessages.NOT_AUTHORIZED});
+        res.status(401).send([{msg: constants.errorMessages.NOT_AUTHORIZED}]);
     } else {
-        res.status(500).send({message: constants.errorMessages.INTERNAL_SERVER_ERROR});
+        res.status(500).send([{msg: constants.errorMessages.INTERNAL_SERVER_ERROR}]);
     }
 });
 

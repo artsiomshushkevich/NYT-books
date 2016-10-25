@@ -1,0 +1,27 @@
+<div class="modal-window-container">
+  <div class="modal-window form-modal">
+    <errors-box-directive errors="errors"
+                         ng-if="areThereErrors"
+                         close-errors-box="closeErrorsBox()">
+    </errors-box-directive>
+
+    <form>
+      <label for="username">Username:</label>
+      <input class="form-input" id="username" type="text" ng-model="username" placeholder="Enter username...">
+      <label for="password">Password:</label>
+      <input class="form-input" id="password" type="password" ng-model="password" placeholder="Enter password...">
+      <label class="form-input"for="confirm-password">Confirm Password:</label>
+      <input class="form-input" id="confirm-password" type="password" ng-model="confirmPassword" placeholder="Confirm password...">
+      <label for="firstname">First Name:</label>
+      <input class="form-input" id="firstname" type="text" ng-model="firstname" placeholder="Enter first name...">
+      <label for="lastname">Last Name:</label>
+      <input class="form-input" id="lastname" type="text" ng-model="lastname" placeholder="Enter last name...">
+    </form>
+    <div class="form-actions">
+      <button class="form-button" ng-click="register()">Register/Update</button>
+      <button class="form-button-close" ng-click="closeModalWindow()">
+          Close
+      </button>
+    </div>
+  </div>
+</div>

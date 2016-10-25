@@ -1,0 +1,12 @@
+<button ng-click="toggleRegisterModalWindow()">Register</button>
+<button ng-click="toggleLoginModalWindow()">Login</button>
+
+<register-modal-window-directive controller-name="RegisterModalWindowController"
+                       ng-if="isRegisterModalWindowOpened"
+                       close-modal-window="toggleRegisterModalWindow()">
+</register-modal-window-directive>
+
+<login-modal-window-directive controller-name="LoginModalWindowController"
+                              ng-if="isLoginModalWindowOpened"
+                              close-modal-window="toggleLoginModalWindow()">
+</login-modal-window-directive> 

@@ -3,16 +3,29 @@
     .module('nytBooks')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', 'BooksHttpService', 'ConstantsService', 'ProgressBarService','CredentialsStorageService','$location'];
+  BooksController.$inject = ['$scope', 'BooksHttpService', 'UserHttpService', 'ConstantsService', 'ProgressBarService','CredentialsStorageService','$location', '$q'];
 
-  function BooksController($scope, BooksHttpService, ConstantsService, ProgressBarService, CredentialsStorageService, $location) {
-    // if (!CredentialsStorageService.getCredentials()) {
-    //   $location.path('/');
-    //   return;
-    // }
-
+  function BooksController($scope, BooksHttpService, UserHttpService, ConstantsService, ProgressBarService, CredentialsStorageService, $location, $q) {
     $scope.currentList = ConstantsService.DEFAULT_LIST;
     
+    (function() {
+      ProgressBarService.start();
+
+      $q.all([
+        BooksHttpService.getLists(),
+        BooksHttpService.getBooksByList($scope.currentList),
+        UserHttpService.getFavorites()
+      ]).then(function(response) {
+        ProgressBarService.complete();
+         
+        $scope.names = response[0].data.results;
+        $scope.books = response[1].data.results;
+        $scope.favorites = response[2].data;
+
+        $scope.amountOfFavorites = $scope.favorites.length;
+      });
+    })();
+
     $scope.changeList = function() {
       ProgressBarService.start();
       
@@ -23,6 +36,7 @@
         });
     };
     
+
     // $scope.isBookExistInFavorites = function(isbn) {
     //   var favorites = CustomCookiesService.getFavoritesFromCookies();
       
@@ -35,45 +49,44 @@
     //   return false;
     // };
     
-    // $scope.addToFavorites = function(isbnArg, listNameArg) {
-    //   var favorites = CustomCookiesService.getFavoritesFromCookies();
+    $scope.addToFavorites = function(isbnArg, listNameArg) {
+      var newFavoriteBook = {
+        isbn: isbnArg,
+        listName: listNameArg
+      };
       
-    //   var newFavoriteBook = {
-    //     isbn: isbnArg,
-    //     listName: listNameArg
-    //   };
+      var isBookExist = false;
       
-    //   var isBookExist = false;
+      for (var i = 0; i < $scope.favorites.length; i++) {
+        if (favorites[i].isbn === isbnArg) {
+          favorites.splice(i, 1);
+          isBookExist = true;
+          
+          UserHttpService.deleteOneFavorite({
+
+          })
+          break;
+        }
+      }
       
-    //   for (var i = 0; i < favorites.length; i++) {
-    //     if (favorites[i].isbn === isbnArg) {
-    //       favorites.splice(i, 1);
-    //       isBookExist = true;
-    //       break;
-    //     }
-    //   }
+      if (!isBookExist) {
+        favorites.push(newFavoriteBook);
+      }
       
-    //   if (!isBookExist) {
-    //     favorites.push(newFavoriteBook);
-    //   }
-      
-    //   $scope.amountOfFavorites = favorites.length;
-    //   CustomCookiesService.putFavoritesToCookies(favorites);
-    // };
+      $scope.amountOfFavorites = favorites.length;
+    };
     
-    // $scope.deleteAllFavorites = function() {
-    //   CustomCookiesService.deleteAllFavoritesFromCookies();
-    //   $scope.amountOfFavorites = 0;
-    // };
+    $scope.deleteAllFavorites = function() {
+      UserHttpService.deleteAllFavorites()
+        .then(function() {
+          $scope.amountOfFavorites = 0;
+          $scope.favorites = [];
+        });
+    };
     
     $scope.goToFavorites = function() {
       $location.path('/favorites');
     };
-    
-    $scope.changeList();
-    
-    // $scope.amountOfFavorites = CustomCookiesService.getFavoritesFromCookies().length;
-
   }
 })();
 

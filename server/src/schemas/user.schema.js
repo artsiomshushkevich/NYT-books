@@ -13,5 +13,8 @@ module.exports = new mongoose.Schema({
     lastname: {
         type: String
     },
-    favorites: [String]
+    favorites: [{
+        isbn: String,
+        listname: String
+    }]
 });

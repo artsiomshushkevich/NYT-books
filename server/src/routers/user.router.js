@@ -24,19 +24,21 @@ router.post('/register', function(req, res) {
                     res.status(400).send([{msg: constants.errorMessages.BUSY_USERNAME}]);
                 } else {
                     var newUser = {
-                        username: req.body.username
+                        username: req.body.username,
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname
                     };
 
                     bcrypt.hash(req.body.password, config.saltRounds, function(err, hash) {
                         newUser.password = hash;
 
-                        if (req.body.firstname) {
-                            newUser.firstname = req.body.firstname;
-                        }
-
-                        if (req.body.lastname) {
-                            newUser.lastname = req.body.lastname;
-                        }
+                        // if (req.body.firstname) {
+                        //     newUser.firstname = req.body.firstname;
+                        // }
+                        //
+                        // if (req.body.lastname) {
+                        //     newUser.lastname = req.body.lastname;
+                        // }
 
                         userService.create(newUser)
                             .then(function() {
@@ -85,12 +87,15 @@ router.post('/login', function(req, res) {
     }
 });
 
-router.post('/favorites/add-to-favorites', function(req, res) {
+router.post('/favorites/add-one', function(req, res) {
     userService.findOne({
         username: req.body.username
     }).then(function(user) {
         var favorites = user.favorites;
-        var newIsbn = req.body.isbn;
+        var newFavorite = {
+            isbn: req.body.isbn,
+            listname: req.body.listname
+        };
 
         req.checkBody('isbn', constants.errorMessages.INVALID_ISBN).matches(constants.regularExpressions.ISBN);
 
@@ -101,12 +106,12 @@ router.post('/favorites/add-to-favorites', function(req, res) {
             return;
         }
 
-        if (favorites.indexOf(newIsbn) !== -1) {
+        if (favorites.indexOf(newFavorite) !== -1) {
             res.status(400).send([{msg: constants.errorMessages.EXISTS_IN_FAVORITES}]);
             return;
         }
 
-        favorites.push(newIsbn);
+        favorites.push(newFavorite);
 
         userService.update(user)
             .then(function() {
@@ -134,7 +139,7 @@ router.delete('/favorites/delete-one', function(req, res) {
         username: req.body.username
     }).then(function(user) {
         var favorites = user.favorites;
-        var deletedIsbn = req.body.isbn;
+        var deletedIsbn =   req.body.isbn;
 
         var indexOfDeletedIsbn = favorites.indexOf(deletedIsbn);
 
@@ -144,6 +149,15 @@ router.delete('/favorites/delete-one', function(req, res) {
             .then(function() {
                 res.sendStatus(200);
             });
+    });
+});
+
+
+router.get('/favorites/get-all/:username', function(req, res) {
+    userService.findOne({
+        username: req.params.username
+    }).then(function(user) {
+        res.status(200).send(user.favorites);
     });
 });
 

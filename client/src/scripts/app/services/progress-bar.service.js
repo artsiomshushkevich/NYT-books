@@ -1,22 +1,24 @@
-angular
-  .module('nytBooks')
-  .factory('ProgressBarService', ProgressBarService);
-
-function ProgressBarService(ngProgressFactory) {
-  var progressBar = ngProgressFactory.createInstance();
+(function() {
+  angular
+    .module('nytBooks')
+    .factory('ProgressBarService', ProgressBarService);
   
-  progressBar.setHeight('7px');
-  progressBar.setColor('#ecf0f1');
+  ProgressBarService.$inject = ['ngProgressFactory'];
   
-  return {
-    start: function() {
-      progressBar.start();
-    },
+  function ProgressBarService(ngProgressFactory) {
+    var progressBar = ngProgressFactory.createInstance();
     
-    complete: function() {
-      progressBar.complete();
+    progressBar.setHeight('7px');
+    progressBar.setColor('#ecf0f1');
+    
+    return {
+      start: function() {
+        progressBar.start();
+      },
+      
+      complete: function() {
+        progressBar.complete();
+      }
     }
   }
-}
-
-ProgressBarService.$inject = ['ngProgressFactory'];
+})();

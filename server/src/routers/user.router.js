@@ -8,6 +8,18 @@ var bcrypt = require('bcrypt');
 
 var router = express.Router();
 
+function favoritesIndexOf(favoritesArray, isbn) {
+    var index = -1;
+
+    for(var i = 0; i < favoritesArray.length; i++) {
+        if (favoritesArray[i].isbn === isbn) {
+            index = i;
+            return index;
+        }
+    }
+
+    return index;
+}
 router.post('/register', function(req, res) {
     req.checkBody(userValidationSchema);
 
@@ -31,14 +43,6 @@ router.post('/register', function(req, res) {
 
                     bcrypt.hash(req.body.password, config.saltRounds, function(err, hash) {
                         newUser.password = hash;
-
-                        // if (req.body.firstname) {
-                        //     newUser.firstname = req.body.firstname;
-                        // }
-                        //
-                        // if (req.body.lastname) {
-                        //     newUser.lastname = req.body.lastname;
-                        // }
 
                         userService.create(newUser)
                             .then(function() {
@@ -91,7 +95,6 @@ router.post('/favorites/add-one', function(req, res) {
     userService.findOne({
         username: req.body.username
     }).then(function(user) {
-        var favorites = user.favorites;
         var newFavorite = {
             isbn: req.body.isbn,
             listname: req.body.listname
@@ -106,12 +109,12 @@ router.post('/favorites/add-one', function(req, res) {
             return;
         }
 
-        if (favorites.indexOf(newFavorite) !== -1) {
+        if (favoritesIndexOf(user.favorites, newFavorite.isbn) !== -1) {
             res.status(400).send([{msg: constants.errorMessages.EXISTS_IN_FAVORITES}]);
             return;
         }
 
-        favorites.push(newFavorite);
+        user.favorites.push(newFavorite);
 
         userService.update(user)
             .then(function() {
@@ -121,7 +124,7 @@ router.post('/favorites/add-one', function(req, res) {
 });
 
 
-router.delete('/favorites/delete-all',function(req, res) {
+router.put('/favorites/delete-all',function(req, res) {
     userService.findOne({
         username: req.body.username
     }).then(function(user) {
@@ -134,14 +137,13 @@ router.delete('/favorites/delete-all',function(req, res) {
     });
 });
 
-router.delete('/favorites/delete-one', function(req, res) {
+router.put('/favorites/delete-one', function(req, res) {
     userService.findOne({
         username: req.body.username
     }).then(function(user) {
-        var favorites = user.favorites;
-        var deletedIsbn =   req.body.isbn;
+        var deletedIsbn =  req.body.isbn;
 
-        var indexOfDeletedIsbn = favorites.indexOf(deletedIsbn);
+        var indexOfDeletedIsbn = favoritesIndexOf(user.favorites, deletedIsbn);
 
         user.favorites.splice(indexOfDeletedIsbn, 1);
 

@@ -39,12 +39,15 @@
         var url = ConstantsService.urls.SERVER_URL + '/api/user/favorites/delete-one';
         data.username = CredentialsStorageService.getCredentials().username;
 
-        return BaseHttpService.request('DELETE', url, data, this._getAuthorizationHeader());
+        return BaseHttpService.request('PUT', url, data, this._getAuthorizationHeader());
       },
       deleteAllFavorites: function() {
         var url = ConstantsService.urls.SERVER_URL + '/api/user/favorites/delete-all';
-        data.username = CredentialsStorageService.getCredentials().username;
-        return BaseHttpService.request('DELETE', url, data, this._getAuthorizationHeader());
+        var data = {
+          username: CredentialsStorageService.getCredentials().username
+        };
+
+        return BaseHttpService.request('PUT', url, data, this._getAuthorizationHeader());
       }
     }
   }

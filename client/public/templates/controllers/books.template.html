@@ -37,9 +37,9 @@
   </div> 
 </section>
 
-<div class="favorites-link" ng-if="amountOfFavorites !== 0" ng-click="goToFavorites()">
+<div class="favorites-link" ng-if="favorites.length !== 0">
   <div class="text-wrapper">
-   <span>{{amountOfFavorites}} favorites   </span>
+   <span ng-click="goToFavorites()">{{favorites.length}} favorites   </span>
    <span class="delete-favorites" ng-click="deleteAllFavorites();"> 
     X
    </span>

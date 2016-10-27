@@ -20,13 +20,13 @@
     $scope.toggleRegisterModalWindow = function() {
       $scope.isRegisterModalWindowOpened = !$scope.isRegisterModalWindowOpened;
       
-      $scope._changeLocationAfterSuccessfulAuth();
+      changeLocationAfterSuccessfulAuth();
     };
 
     $scope.toggleLoginModalWindow = function() {
       $scope.isLoginModalWindowOpened = !$scope.isLoginModalWindowOpened;
       
-      $scope._changeLocationAfterSuccessfulAuth();
+      changeLocationAfterSuccessfulAuth();
     }; 
   }
 })();

@@ -5,20 +5,28 @@
 
   HomeController.$inject = ['$scope', 'CredentialsStorageService', '$location'];
 
-  function HomeController($scope, CredentialsStorageService) {
+  function HomeController($scope, CredentialsStorageService, $location) {
     $scope.isRegisterModalWindowOpened = false;
     $scope.isLoginModalWindowOpened = false;
 
-    $scope.toggleRegisterModalWindow = function() {
-      if (CredentialsStorageService.getCredentials()) {
-        
-      }
+    changeLocationAfterSuccessfulAuth();
 
+    function changeLocationAfterSuccessfulAuth() {
+      if (CredentialsStorageService.getCredentials()) {
+        $location.path('/books');
+      }
+    }
+
+    $scope.toggleRegisterModalWindow = function() {
       $scope.isRegisterModalWindowOpened = !$scope.isRegisterModalWindowOpened;
+      
+      $scope._changeLocationAfterSuccessfulAuth();
     };
 
     $scope.toggleLoginModalWindow = function() {
       $scope.isLoginModalWindowOpened = !$scope.isLoginModalWindowOpened;
-    };
+      
+      $scope._changeLocationAfterSuccessfulAuth();
+    }; 
   }
 })();

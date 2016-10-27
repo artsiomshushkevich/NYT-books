@@ -12,6 +12,11 @@
         
         return BaseHttpService.request('GET', url);
       },
+      getBookByIsbn: function(list, isbn) {
+        var url = ConstantsService.urls.BOOKS_URL + '?list=' + list + '&isbn=' + isbn;
+
+        return BaseHttpService.request('GET', url);
+      },
       getLists: function() {
         return BaseHttpService.request('GET', ConstantsService.urls.LISTS_URL);
       }

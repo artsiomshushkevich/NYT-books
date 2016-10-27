@@ -7,7 +7,8 @@
 
   function BooksController($scope, BooksHttpService, UserHttpService, ConstantsService, ProgressBarService, CredentialsStorageService, $location, $q) {
     $scope.currentList = ConstantsService.DEFAULT_LIST;
-    
+    $scope.isModalWindowShowed = false;
+
     (function() {
       ProgressBarService.start();
 
@@ -23,6 +24,18 @@
         $scope.favorites = response[2].data;
       });
     })();
+
+    $scope.showModalWindow = function(list, isbn) {
+      BooksHttpService.getBookByIsbn(list, isbn)
+        .then(function(response) {
+          $scope.currentBook = response.data;
+          $scope.isModalWindowShowed = true;
+        });
+    };
+
+    $scope.closeModalWindow = function() {
+      $scope.isModalWindowShowed = false;
+    }
 
     $scope.changeList = function() {
       ProgressBarService.start();
@@ -82,6 +95,12 @@
     
     $scope.goToFavorites = function() {
       $location.path('/favorites');
+    };
+
+    $scope.logout = function() {
+      CredentialsStorageService.setCredentials(null);
+
+      $location.path('/');
     };
   }
 })();

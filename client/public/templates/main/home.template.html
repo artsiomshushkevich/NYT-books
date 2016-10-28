@@ -1,6 +1,48 @@
-<button ng-click="toggleRegisterModalWindow()">Register</button>
-<button ng-click="toggleLoginModalWindow()">Login</button>
+<nav class="navigation-container">
+  <button class="navigation-button" ng-click="toggleRegisterModalWindow()">
+    <i class="fa fa-plug" aria-hidden="true"></i> Register
+  </button>
+  <button class="navigation-button" ng-click="toggleLoginModalWindow()">
+    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+  </button>    
+</nav>
 
+<section class="abilities-section">
+  <h2 class="section-title">What do we offer?</h2>
+  <div class="items-container abilities-container">
+    <div data-ability="Browse best books in the New York Times rating!" class="ability">
+      <p>
+        <i class="fa fa-book" aria-hidden="true"></i>
+      </p>
+    </div>
+    <div data-ability="Add them to your favorite's list!" class="ability">
+      <p>
+        <!--<i class="fa fa-bookmark-o" aria-hidden="true"></i>-->
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </p>
+    </div>
+    <div data-ability="Search desired book just typing it's name!" class="ability">
+      <p>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="partners-section">
+  <h2 class="section-title">Our partners</h2>
+  <div class="items-container partners-container"> 
+    <img src="./images/partners/epam.png" alt="epam">
+    <img src="./images/partners/bsuir.png" alt="bsuir">
+    <img src="./images/partners/fksis.png" alt="fksis">
+  </div>
+</section>
+
+<section class="about-section">
+  <h2 class="section-title">About Me</h2>
+
+</section>
 <register-modal-window-directive controller-name="RegisterModalWindowController"
                        ng-if="isRegisterModalWindowOpened"
                        close-modal-window="toggleRegisterModalWindow()">

@@ -4,6 +4,7 @@
 @import './partials/progress-bar.scss';
 @import './partials/form.scss';
 @import './partials/errors-box.scss';
+@import './partials/home.scss';
 
 * {
   box-sizing: border-box;
@@ -24,6 +25,11 @@ a {
   text-decoration: none;
 }
 
+section {
+  color: $flat-gray;
+  font-family: $arial-font-stack;
+}
+
 .page-container {
   min-height: 100%;
   margin-bottom: -100px;
@@ -32,6 +38,14 @@ a {
 .content-container {
   margin: 0px auto;
   width: 70%;
+}
+
+.page-header {
+  padding: 30px;
+}
+
+.page-label {
+  color: white;
 }
 
 .addition-info {
@@ -45,6 +59,27 @@ a {
   color: $flat-light-gray;
   font-size: 14px;
   text-align: right;  
+}
+
+.navigation-container {
+  background-color: white;
+  display: flex;
+  height: 60px;
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.navigation-button {
+  background-color: inherit;
+  border: 0px;
+  color: $flat-gray;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.navigation-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .push {

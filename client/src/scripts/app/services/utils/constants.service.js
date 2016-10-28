@@ -11,6 +11,6 @@
         SERVER_URL: 'http://localhost:3000',
       },
       DEFAULT_LIST: 'hardcover-fiction'
-    }
+    };
   }
 })();

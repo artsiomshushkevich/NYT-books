@@ -7,12 +7,6 @@ module.exports = new mongoose.Schema({
     password: {
         type: String
     },
-    firstname: {
-        type: String
-    },
-    lastname: {
-        type: String
-    },
     favorites: [{
         isbn: String,
         listname: String

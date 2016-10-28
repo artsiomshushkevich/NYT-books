@@ -1,1 +1,1 @@
-angular.module('nytBooks', ['ngProgress', 'ngRoute', 'ngCookies']);
+angular.module('nytBooks', ['ngProgress', 'ngRoute']);

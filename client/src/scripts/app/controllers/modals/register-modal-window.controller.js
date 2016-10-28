@@ -18,8 +18,6 @@
         username: $scope.username,
         password: $scope.password,
         confirmPassword: $scope.confirmPassword,
-        firstname: $scope.firstname,
-        lastname: $scope.lastname
       };
 
       UserHttpService.register(user)

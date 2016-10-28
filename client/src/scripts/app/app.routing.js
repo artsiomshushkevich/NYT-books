@@ -11,15 +11,15 @@
     
     $routeProvider.
       when('/', {
-        templateUrl: '../templates/controllers/home.template.html',
+        templateUrl: '../templates/main/home.template.html',
         controller: 'HomeController'
       }).
       when('/books', {
-        templateUrl: '../templates/controllers/books.template.html',
+        templateUrl: '../templates/main/books.template.html',
         controller: 'BooksController'
       }).
       when('/favorites', {
-        templateUrl: '../templates/controllers/favorites.template.html',
+        templateUrl: '../templates/main/favorites.template.html',
         controller: 'FavoritesController'
       }).
       otherwise({

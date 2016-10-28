@@ -8,9 +8,13 @@
   function FavoritesController($scope, UserHttpService, BooksHttpService, FavoritesService, $location, ProgressBarService) {
     $scope.isModalWindowShowed = false;
     
-    getFavorites();
-
-    function getFavorites() {
+    function redirectIsThereAreNotFavorites() {
+      if ($scope.favorites.length === 0) {
+        $location.path('/');
+      }
+    } 
+      
+    (function() {
       ProgressBarService.start();
 
       UserHttpService.getFavorites()
@@ -25,12 +29,10 @@
                 return item.data;
               });
 
-              if ($scope.favorites.length === 0) {
-                $location.path('/');
-              }
+              redirectIsThereAreNotFavorites();
             });
         });
-    }
+    })();
 
     $scope.showModalWindow = function(list, isbn) {
       BooksHttpService.getBookByIsbn(list, isbn)
@@ -45,10 +47,18 @@
     };
     
     $scope.deleteFromFavorites = function(deletedIsbn) { 
-      UserHttpService.deleteOneFavorite({isbn: deletedIsbn})
-        .then(function() {
-          getFavorites();
-        });
+      for (var i = 0; i < $scope.favorites.length; i++) {
+        if ($scope.favorites[i].results[0].book_details[0].primary_isbn13 === deletedIsbn) {
+          $scope.favorites.splice(i, 1);
+          
+          UserHttpService.deleteOneFavorite({isbn: deletedIsbn});
+          
+          break;
+        }
+      }
+      
+      redirectIsThereAreNotFavorites();
     };
   }
+
 })();

@@ -15,7 +15,6 @@
       start: function() {
         progressBar.start();
       },
-      
       complete: function() {
         progressBar.complete();
       }

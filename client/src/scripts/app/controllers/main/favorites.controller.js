@@ -3,9 +3,23 @@
     .module('nytBooks')
     .controller('FavoritesController', FavoritesController);
   
-  FavoritesController.$inject = ['$scope', 'UserHttpService', 'BooksHttpService', 'FavoritesService', '$location', 'ProgressBarService'];
+  FavoritesController.$inject = [
+    '$scope', 
+    'UserHttpService', 
+    'BooksHttpService', 
+    'FavoritesService', 
+    'CredentialsStorageService', 
+    '$location', 
+    'ProgressBarService'
+  ];
 
-  function FavoritesController($scope, UserHttpService, BooksHttpService, FavoritesService, $location, ProgressBarService) {
+  function FavoritesController($scope, 
+                               UserHttpService, 
+                               BooksHttpService, 
+                               FavoritesService, 
+                               CredentialsStorageService, 
+                               $location, 
+                               ProgressBarService) {
     $scope.isModalWindowShowed = false;
     
     function redirectIsThereAreNotFavorites() {
@@ -59,6 +73,15 @@
       
       redirectIsThereAreNotFavorites();
     };
-  }
 
+    $scope.logout = function() {
+      CredentialsStorageService.setCredentials(null);
+
+      $location.path('/');
+    };
+
+    $scope.goToBooks = function() {
+      $location.path('/books');
+    };
+  }
 })();

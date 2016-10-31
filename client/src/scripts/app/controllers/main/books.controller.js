@@ -3,9 +3,25 @@
     .module('nytBooks')
     .controller('BooksController', BooksController);
 
-  BooksController.$inject = ['$scope', 'BooksHttpService', 'UserHttpService', 'ConstantsService', 'ProgressBarService','CredentialsStorageService','$location', '$q'];
+  BooksController.$inject = [
+    '$scope', 
+    'BooksHttpService', 
+    'UserHttpService', 
+    'ConstantsService', 
+    'ProgressBarService',
+    'CredentialsStorageService',
+    '$location', 
+    '$q'
+  ];
 
-  function BooksController($scope, BooksHttpService, UserHttpService, ConstantsService, ProgressBarService, CredentialsStorageService, $location, $q) {
+  function BooksController($scope, 
+                           BooksHttpService, 
+                           UserHttpService, 
+                           ConstantsService, 
+                           ProgressBarService, 
+                           CredentialsStorageService, 
+                           $location, 
+                           $q) {
     $scope.currentList = ConstantsService.DEFAULT_LIST;
     $scope.isModalWindowShowed = false;
 

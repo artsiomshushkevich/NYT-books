@@ -3,7 +3,7 @@
     <i class="fa fa-plug" aria-hidden="true"></i> Register
   </button>
   <button class="navigation-button" ng-click="toggleLoginModalWindow()">
-    <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+    <i class="fa fa-sign-in" aria-hidden="true"></i> Log In
   </button>    
 </nav>
 
@@ -17,7 +17,6 @@
     </div>
     <div data-ability="Add them to your favorite's list!" class="ability">
       <p>
-        <!--<i class="fa fa-bookmark-o" aria-hidden="true"></i>-->
         <i class="fa fa-star" aria-hidden="true"></i>
       </p>
     </div>
@@ -26,23 +25,47 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       </p>
     </div>
-
   </div>
 </section>
 
 <section class="partners-section">
   <h2 class="section-title">Our partners</h2>
-  <div class="items-container partners-container"> 
-    <img src="./images/partners/epam.png" alt="epam">
-    <img src="./images/partners/bsuir.png" alt="bsuir">
-    <img src="./images/partners/fksis.png" alt="fksis">
+  <div class="items-container partners-container">
+    <a href="https://www.epam.com/">
+      <img src="./images/partners/epam.png" alt="epam">
+    </a>
+    <a href="https://www.bsuir.by/">
+      <img src="./images/partners/bsuir.png" alt="bsuir">
+    </a>
+    <a href="http://fksis.bsuir.by/">
+       <img src="./images/partners/fksis.png" alt="fksis">
+    </a>
   </div>
 </section>
 
 <section class="about-section">
-  <h2 class="section-title">About Me</h2>
-
+  <h2 class="section-title">Team</h2>
+  <div class="items-container about-container">
+    <div class="profile">
+      <img src="./images/others/author.jpg" alt="author">
+      <p>
+        Artsiom Shushkevich
+      </p>
+      <p>
+        Full-stack developer
+      </p>
+    </div>
+    <div class="about-info"> 
+      <p>About Me</p>
+      <p>
+        I'm keen on developing new features by MEAN stack. Also threre is experience in
+        Java back-end especially Struts2 and Spring frameworks. So you can rely on me if
+        you want to get good quality web application.
+      </p>
+    </div>
+  </div>
 </section>
+
 <register-modal-window-directive controller-name="RegisterModalWindowController"
                        ng-if="isRegisterModalWindowOpened"
                        close-modal-window="toggleRegisterModalWindow()">

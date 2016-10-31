@@ -1,3 +1,12 @@
+<nav class="navigation-container">
+  <button class="navigation-button" ng-click="goToFavorites()">
+    <i class="fa fa-star" aria-hidden="true"></i> To Favorites
+  </button>
+  <button class="navigation-button" ng-click="logout()">
+    <i class="fa fa-sign-out" aria-hidden="true"></i>  Log out
+  </button>    
+</nav>
+
 <div class="selectpicker-container">
   <select name="booksLists" id="lists" class="selectpicker" ng-model="currentList" ng-change="changeList()">
     <option ng-repeat="name in names" value="{{name.list_name}}">

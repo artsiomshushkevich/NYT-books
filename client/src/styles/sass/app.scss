@@ -32,7 +32,7 @@ section {
 
 .page-container {
   min-height: 100%;
-  margin-bottom: -100px;
+  margin-bottom: -200px;
 }
 
 .content-container {
@@ -42,6 +42,7 @@ section {
 
 .page-header {
   padding: 30px;
+  height: 100px;
 }
 
 .page-label {
@@ -83,11 +84,55 @@ section {
 }
 
 .push {
-  height: 100px;
+  height: 200px;
 }
 
 .page-header,
 .page-footer {
   background-color: $flat-gray;
-  height: 100px;
+ 
 }
+
+.page-footer {
+  height: 200px;
+  padding-top: 30px;
+}
+
+.footer-content {
+  color: white;
+  font-family: $arial-font-stack;
+  margin: 20px auto;
+  text-align: center;
+  width: 300px;
+
+  a {
+    border: 1px solid white;
+    border-radius: 50%;
+    color: white;
+    font-size: 26px;
+    display: block;
+    height: 50px;
+    margin-left: 10px;
+    padding-top: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 50px;
+  }
+
+  a:hover {
+    background-color: white;
+    color: $flat-gray;
+  }
+}
+
+.follow {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.copyright {
+  font-size: 14px;
+}
+

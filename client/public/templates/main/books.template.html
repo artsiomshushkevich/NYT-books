@@ -2,9 +2,12 @@
   <button class="navigation-button" ng-click="goToFavorites()">
     <i class="fa fa-star" aria-hidden="true"></i> To Favorites
   </button>
+  <button class="navigation-button" ng-click="toggleUpdateModalWindow()">
+    <i class="fa fa-cog" aria-hidden="true"></i>  Update profile
+  </button>   
   <button class="navigation-button" ng-click="logout()">
     <i class="fa fa-sign-out" aria-hidden="true"></i>  Log out
-  </button>    
+  </button> 
 </nav>
 
 <div class="selectpicker-container">
@@ -61,3 +64,8 @@
                              close-modal-window="closeModalWindow()"
                              book-data="currentBook">
 </info-modal-window-directive>
+
+<update-modal-window-directive controller-name="UpdateModalWindowController"
+                               ng-if="isUpdateModalWindowShowed"
+                               close-modal-window="toggleUpdateModalWindow()">
+</update-modal-window-directive>                    

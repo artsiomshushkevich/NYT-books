@@ -2,6 +2,9 @@
   <button class="navigation-button" ng-click="goToBooks()">
     <i class="fa fa-book" aria-hidden="true"></i> To Books
   </button>
+  <button class="navigation-button" ng-click="toggleUpdateModalWindow()">
+    <i class="fa fa-cog" aria-hidden="true"></i> Update profile
+  </button>   
   <button class="navigation-button" ng-click="logout()">
     <i class="fa fa-sign-out" aria-hidden="true"></i>  Log out
   </button>    
@@ -36,3 +39,8 @@
                              close-modal-window="closeModalWindow()"
                              book-data="currentBook">
 </info-modal-window-directive>
+
+<update-modal-window-directive controller-name="UpdateModalWindowController"
+                               ng-if="isUpdateModalWindowShowed"
+                               close-modal-window="toggleUpdateModalWindow()">
+</update-modal-window-directive>    

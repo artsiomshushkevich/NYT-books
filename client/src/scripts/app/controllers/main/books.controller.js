@@ -24,6 +24,7 @@
                            $q) {
     $scope.currentList = ConstantsService.DEFAULT_LIST;
     $scope.isModalWindowShowed = false;
+    $scope.isUpdateModalWindowShowed = false;
 
     (function() {
       ProgressBarService.start();
@@ -51,7 +52,11 @@
 
     $scope.closeModalWindow = function() {
       $scope.isModalWindowShowed = false;
-    }
+    };
+
+    $scope.toggleUpdateModalWindow = function() {
+      $scope.isUpdateModalWindowShowed = !$scope.isUpdateModalWindowShowed;
+    };
 
     $scope.changeList = function() {
       ProgressBarService.start();

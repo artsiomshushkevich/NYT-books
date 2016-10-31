@@ -17,5 +17,17 @@ module.exports = {
             .equals(req.body.confirmPassword);
 
         return req.validationErrors();
+    },
+    validateDuringUpdate: function(req) {
+        req.checkBody('newUsername', constants.errorMessages.INVALID_USERNAME)
+            .matches(constants.regularExpressions.USERNAME);
+
+        req.checkBody('newPassword', constants.errorMessages.INVALID_PASSWORD)
+            .matches(constants.regularExpressions.PASSWORD);
+
+        req.checkBody('newPassword', constants.errorMessages.NOT_SAME_PASSWORDS)
+            .equals(req.body.confirmPassword);
+
+        return req.validationErrors();
     }
 };

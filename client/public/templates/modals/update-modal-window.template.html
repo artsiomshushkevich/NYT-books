@@ -6,15 +6,18 @@
     </errors-box-directive>
 
     <form>
-      <label for="username">Username:</label>
-      <input class="form-input" id="username" type="text" ng-model="username" placeholder="Enter username...">
-      <label for="password">Password:</label>
-      <input class="form-input" id="password" type="password" ng-model="password" placeholder="Enter password...">
+      <label for="new-username">New Username:</label>
+      <input class="form-input" id="new-username" type="text" ng-model="newUsername" placeholder="Enter new username...">
+      <label for="old-password">Old Password:</label>
+      <input class="form-input" id="old-password" type="password" ng-model="oldPassword" placeholder="Enter old password...">
+      <label for="new-password">New Password:</label>
+      <input class="form-input" id="new-password" type="password" ng-model="newPassword" placeholder="Enter new password...">
       <label class="form-input"for="confirm-password">Confirm Password:</label>
       <input class="form-input" id="confirm-password" type="password" ng-model="confirmPassword" placeholder="Confirm password...">
     </form>
+
     <div class="form-actions">
-      <button class="form-button" ng-click="register()">Register</button>
+      <button class="form-button" ng-click="update()">Update</button>
       <button class="form-button-close" ng-click="closeModalWindow()">
           Close
       </button>

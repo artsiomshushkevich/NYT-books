@@ -17,6 +17,11 @@
 
         return BaseHttpService.request('POST', url, data);
       },
+      update: function(data) {
+        var url = ConstantsService.urls.SERVER_URL + '/api/user/update';
+
+        return BaseHttpService.request('PUT', url, data, this._getAuthorizationHeader());
+      },
       _getAuthorizationHeader: function() {
         return {
           'Authorization': 'Bearer ' + CredentialsStorageService.getCredentials().token

@@ -86,6 +86,55 @@ router.post('/login', function(req, res) {
 
 });
 
+router.put('/update', function(req, res) {
+   userService.findOne({
+       username: req.body.oldUsername
+   }).then(function(user) {
+       if (user) {
+           bcrypt.compare(req.body.oldPassword, user.password, function(err, result) {
+               if (result) {
+                   var errors = userValidator.validateDuringUpdate(req);
+
+                   if (errors) {
+                       res.status(400).send(errors);
+                       return;
+                   }
+
+                   userService.exists({
+                       username: req.body.newUsername
+                   }).then(function(isBusy) {
+                       if (isBusy && user.username !== req.body.newUsername) {
+                           res.status(400).send([{msg: constants.errorMessages.BUSY_USERNAME}]);
+                           return;
+                       }
+
+                       user.username =  req.body.newUsername;
+
+                       bcrypt.hash(req.body.newPassword, config.saltRounds, function(err, hash) {
+                           user.password = hash;
+
+                           userService.update(user)
+                               .then(function() {
+                                   var jwtToken = jwt.sign({username: req.body.newUsername}, config.secretKey);
+
+                                   res.status(200).send({
+                                       token: jwtToken,
+                                       username: req.body.newUsername
+                                   });
+                               });
+                       });
+                   });
+               } else {
+                   res.status(400).send([{msg: constants.errorMessages.INVALID_CREDENTIALS}]);
+               }
+
+           });
+       } else {
+           res.status(400).send([{msg: constants.errorMessages.INVALID_CREDENTIALS}]);
+       }
+   });
+});
+
 router.post('/favorites/add-one', function(req, res) {
     userService.findOne({
         username: req.body.username

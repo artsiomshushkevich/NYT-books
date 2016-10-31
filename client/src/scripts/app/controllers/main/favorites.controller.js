@@ -21,6 +21,7 @@
                                $location, 
                                ProgressBarService) {
     $scope.isModalWindowShowed = false;
+    $scope.isUpdateModalWindowShowed = false;
     
     function redirectIsThereAreNotFavorites() {
       if ($scope.favorites.length === 0) {
@@ -60,6 +61,10 @@
       $scope.isModalWindowShowed = false;
     };
     
+    $scope.toggleUpdateModalWindow = function() {
+      $scope.isUpdateModalWindowShowed = !$scope.isUpdateModalWindowShowed;
+    };
+
     $scope.deleteFromFavorites = function(deletedIsbn) { 
       for (var i = 0; i < $scope.favorites.length; i++) {
         if ($scope.favorites[i].results[0].book_details[0].primary_isbn13 === deletedIsbn) {

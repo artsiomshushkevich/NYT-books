@@ -10,6 +10,7 @@ NYT Books
 
 1. Download/clone a repository [NYT-books](https://github.com/artsiomshushkevich/NYT-books.git)
 2. Run in the root directory of the application `npm install`
+
 ===
 
 ###How to run client-side application:
@@ -39,6 +40,7 @@ NYT Books
 >For successful running server-side application `Python 2.x` is required on your local machine. If you don't have Python 2.x, please, visit [Python downloading page](https://www.python.org/downloads/)
 >Also you have to install `node-gyp`(run `npm install -g node-gyp`)
 >And finally install monogodb database on your local machine. Visit [Mongodb installation page](https://docs.mongodb.com/manual/installation/?jmp=footer)
+
 ===
 
 ###Current functionality:
